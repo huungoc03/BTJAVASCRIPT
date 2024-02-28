@@ -1,0 +1,14 @@
+#head div {
+    margin-bottom: 10px;
+  }
+  
+  /* Định dạng cho các nút button */
+  button {
+    padding: 5px 10px;
+  }
+  
+  /* Định dạng cho phần tử có id="result" */
+  #result {
+    margin-top: 10px;
+    font-weight: bold;
+  }
