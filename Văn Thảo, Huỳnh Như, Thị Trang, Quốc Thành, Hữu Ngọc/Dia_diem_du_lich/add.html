@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Destination</title>
+  <!-- Link tới Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5 mb-4">Add New Destination</h1>
+
+    <!-- Form để nhập thông tin mới -->
+    <form id="addDestinationForm" class="mb-4">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="cost">Cost:</label>
+        <select id="cost" name="cost" class="form-control" required>
+          <option value="$$">$$</option>
+          <option value="$$$">$$$</option>
+          <option value="$$$$">$$$$</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags (comma-separated):</label>
+        <input type="text" id="tags" name="tags" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-success">Add Destination</button>
+    </form>
+  </div>
+
+  <!-- Link tới Bootstrap JS và jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Script để gửi dữ liệu mới vào index.html và lưu vào localStorage -->
+  <script>
+    const addDestinationForm = document.getElementById("addDestinationForm");
+
+    addDestinationForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const description = document.getElementById("description").value;
+      const image = document.getElementById("image").value;
+      const rating = parseFloat(document.getElementById("rating").value);
+      const cost = document.getElementById("cost").value;
+      const tags = document.getElementById("tags").value.split(",");
+
+      const newDestination = {
+        name: name,
+        description: description,
+        image: image,
+        rating: rating,
+        cost: cost,
+        tags: tags
+      };
+
+      // Lưu vào localStorage
+      let destinations = JSON.parse(localStorage.getItem("destinations")) || [];
+      destinations.push(newDestination);
+      localStorage.setItem("destinations", JSON.stringify(destinations));
+
+      // Gửi dữ liệu mới đến trang chủ
+      window.opener.postMessage({ type: "newDestination", data: newDestination }, "*");
+
+      // Đóng cửa sổ hiện tại sau khi thêm thành công
+      window.close();
+    });
+  </script>
+</body>
+</html>
