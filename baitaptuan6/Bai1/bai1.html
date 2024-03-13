@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    FullName_Customer 
+    <input type="text" id="name">
+    <br>
+    <br>
+    Id_Pro 
+    <input type="text" id="id">
+    <br>
+    <br>
+    Name_Pro 
+    <input type="text" id="prdname">
+    <br>
+    <br>
+    Quantity_Pro 
+    <input type="number" id="qty">
+    <br>
+    <br>
+    Price_Pro 
+    <input type="number" id="price">
+    <br>
+    <br>
+    <input type="button" value="Save" onclick="Save()">
+    <input type="button" value="Show" onclick="Show()">
+    <input type="button" value="Reset" onclick="Reset()">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Auto Increment</th>
+                <th>Customer Name</th>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead> 
+        <tbody id="tbl"></tbody>
+    </table>
+    <script src="bai1.js"></script>
+</body>
+</html>
